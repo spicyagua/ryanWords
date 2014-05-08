@@ -1,0 +1,37 @@
+<!doctype html>
+<html>
+<head>
+  <title>Vibrate</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="http://code.jquery.com/mobile/1.2.0/jquery.mobile-1.2.0.min.css">
+  <script src="http://code.jquery.com/jquery-1.8.2.min.js"></script>
+  <script src="http://code.jquery.com/mobile/1.2.0/jquery.mobile-1.2.0.min.js"></script>
+
+</head>
+<body>
+
+  <script>
+
+    jQuery("#theButton").click(function(e) {
+
+      navigator.vibrate = navigator.vibrate ||
+        navigator.webkitVibrate ||
+        navigator.mozVibrate ||
+        navigator.msVibrate;
+      if (navigator.vibrate) {
+        jQuery("p").text("I should be shaking now...");
+        navigator.vibrate([2000, 1000, 3000, 1000, 2000]);
+        jQuery("p").text("Did you feel that Ryan?");<!-- Is "Vibrate" a blocking call?  Will find out if we see this message -->
+      }
+      else {
+        jQuery("p").text("Vibrate not enabled");
+      }
+
+    });
+  </script>
+
+  <button type="button" id="theButton">Click Me to Test</button>
+
+  <p></p>
+</body>
+</html>
